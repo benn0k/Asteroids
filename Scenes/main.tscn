@@ -1,0 +1,218 @@
+[gd_scene load_steps=19 format=3 uid="uid://4tfnwqbyq5km"]
+
+[ext_resource type="PackedScene" uid="uid://di1702g5vhlx1" path="res://Scenes/ship_1.tscn" id="1_l44on"]
+[ext_resource type="PackedScene" uid="uid://80dg3ymtak06" path="res://Scenes/background_1.tscn" id="2_jstck"]
+[ext_resource type="PackedScene" uid="uid://bbrvpofi15082" path="res://Scenes/random_item_spawner.tscn" id="3_hcrdr"]
+[ext_resource type="PackedScene" uid="uid://lfr7ritfvdvc" path="res://Scenes/despawn_boundary.tscn" id="4_v050s"]
+[ext_resource type="Theme" uid="uid://cfqgi7qfcia8g" path="res://theme/default.tres" id="5_5v858"]
+[ext_resource type="Script" path="res://Scripts/ui_timer.gd" id="5_l06gw"]
+[ext_resource type="FontFile" uid="uid://d28rwfkocnaf6" path="res://Assets/fonts/Pixelme.ttf" id="6_41q4r"]
+[ext_resource type="FontFile" uid="uid://cec18n65nfoim" path="res://Assets/fonts/poco/Poco.ttf" id="6_ykrll"]
+[ext_resource type="Script" path="res://Scripts/AnimationPlayer.gd" id="7_jnio5"]
+[ext_resource type="Texture2D" uid="uid://cgstggo3jm8q5" path="res://Assets/GUI.png" id="7_xrir0"]
+[ext_resource type="PackedScene" uid="uid://cwukgq1btybvn" path="res://Scenes/boost_ui.tscn" id="10_4vfej"]
+[ext_resource type="PackedScene" uid="uid://dqnl7x3ie0pgw" path="res://Scenes/boost_pickup.tscn" id="12_rh28s"]
+
+[sub_resource type="GDScript" id="GDScript_nh4re"]
+script/source = "extends Node2D
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5h355"]
+texture = ExtResource("7_xrir0")
+expand_margin_left = 8.0
+expand_margin_top = 15.0
+expand_margin_bottom = 10.0
+region_rect = Rect2(113, 81, 30, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8falt"]
+texture = ExtResource("7_xrir0")
+expand_margin_left = 8.0
+expand_margin_top = 15.0
+expand_margin_bottom = 10.0
+region_rect = Rect2(113, 98, 30, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cee1g"]
+texture = ExtResource("7_xrir0")
+expand_margin_left = 8.0
+expand_margin_top = 15.0
+expand_margin_bottom = 10.0
+region_rect = Rect2(113, 98, 30, 13)
+
+[sub_resource type="Animation" id="Animation_2oyer"]
+resource_name = "blinking_text"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Panel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w5qih"]
+_data = {
+"blinking_text": SubResource("Animation_2oyer")
+}
+
+[node name="Main" type="Node2D"]
+script = SubResource("GDScript_nh4re")
+metadata/_edit_vertical_guides_ = [400.0]
+metadata/_edit_horizontal_guides_ = [76.0, 400.0]
+
+[node name="ship" parent="." instance=ExtResource("1_l44on")]
+position = Vector2(400, 400)
+
+[node name="Background_1" parent="." instance=ExtResource("2_jstck")]
+layer = -1
+
+[node name="RandomItemSpawner" parent="." instance=ExtResource("3_hcrdr")]
+
+[node name="Boundary" type="Node" parent="."]
+
+[node name="L_despawn_boundary" parent="Boundary" groups=["despawn"] instance=ExtResource("4_v050s")]
+position = Vector2(-275, 357)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="T_despawn_boundary2" parent="Boundary" groups=["despawn"] instance=ExtResource("4_v050s")]
+position = Vector2(439, -275)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="R_despawn_boundary3" parent="Boundary" groups=["despawn"] instance=ExtResource("4_v050s")]
+position = Vector2(1000, 400)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="B_despawn_boundary4" parent="Boundary" groups=["despawn"] instance=ExtResource("4_v050s")]
+position = Vector2(447, 975)
+scale = Vector2(10, 1)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.375
+anchor_top = 0.238
+anchor_right = 0.448
+anchor_bottom = 0.417
+offset_left = 8.0
+offset_top = 28.6
+offset_right = 134.6
+offset_bottom = -36.6
+scale = Vector2(0.995, 0.995)
+alignment = 1
+
+[node name="Button" type="Button" parent="UI/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("5_5v858")
+theme_override_constants/h_separation = 7032
+theme_override_fonts/font = ExtResource("6_41q4r")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_5h355")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8falt")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cee1g")
+text = "RESTART"
+
+[node name="Panel" type="Panel" parent="UI"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -133.0
+offset_top = 48.0
+offset_right = 44.0
+offset_bottom = 57.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+size_flags_stretch_ratio = 0.0
+script = ExtResource("5_l06gw")
+
+[node name="Minutes" type="Label" parent="UI/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.389
+anchor_bottom = 0.389
+offset_left = -14.6667
+offset_top = -50.501
+offset_right = 33.3333
+offset_bottom = 20.499
+theme_override_fonts/font = ExtResource("6_ykrll")
+theme_override_font_sizes/font_size = 59
+text = "00"
+
+[node name="Seconds" type="Label" parent="UI/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.6667
+offset_top = -51.1667
+offset_right = 110.667
+offset_bottom = 19.8333
+theme_override_fonts/font = ExtResource("6_ykrll")
+theme_override_font_sizes/font_size = 59
+text = "00"
+horizontal_alignment = 2
+
+[node name="Msecs" type="Label" parent="UI/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 125.333
+offset_top = -46.6667
+offset_right = 209.333
+offset_bottom = 24.3333
+theme_override_fonts/font = ExtResource("6_ykrll")
+theme_override_font_sizes/font_size = 59
+text = "000"
+horizontal_alignment = 2
+
+[node name="Score" type="Label" parent="UI/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 214.0
+offset_top = 462.0
+offset_right = 322.0
+offset_bottom = 498.0
+theme_override_fonts/font = ExtResource("6_ykrll")
+theme_override_font_sizes/font_size = 30
+text = "SCORE: 0"
+
+[node name="BoostUI" parent="UI/Panel" instance=ExtResource("10_4vfej")]
+layout_mode = 0
+offset_left = -154.0
+offset_top = 437.333
+offset_right = -66.0
+offset_bottom = 437.333
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w5qih")
+}
+script = ExtResource("7_jnio5")
+
+[node name="Area2D" parent="." groups=["boost_pickup"] instance=ExtResource("12_rh28s")]
+position = Vector2(154, 514)
+
+[connection signal="area_entered" from="ship" to="UI/Panel" method="_on_ship_area_entered"]
+[connection signal="boost_pickup" from="ship" to="RandomItemSpawner" method="_on_ship_boost_pickup"]
+[connection signal="destroyed" from="ship" to="Boundary/L_despawn_boundary" method="_on_ship_destroyed"]
+[connection signal="destroyed" from="ship" to="Boundary/T_despawn_boundary2" method="_on_ship_destroyed"]
+[connection signal="destroyed" from="ship" to="Boundary/R_despawn_boundary3" method="_on_ship_destroyed"]
+[connection signal="destroyed" from="ship" to="Boundary/B_despawn_boundary4" method="_on_ship_destroyed"]
+[connection signal="destroyed" from="ship" to="UI/Panel" method="_on_ship_destroyed"]
+[connection signal="destroyed" from="ship" to="AnimationPlayer" method="_on_ship_destroyed"]
+[connection signal="is_boosting" from="ship" to="UI/Panel/BoostUI" method="_on_ship_is_boosting"]
+[connection signal="child_exiting_tree" from="RandomItemSpawner" to="UI/Panel" method="_on_random_item_spawner_child_exiting_tree"]
+[connection signal="area_entered" from="Boundary/L_despawn_boundary" to="UI/Panel" method="_on_l_despawn_boundary_area_entered"]

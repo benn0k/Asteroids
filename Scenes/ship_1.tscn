@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://di1702g5vhlx1"]
+
+[ext_resource type="Texture2D" uid="uid://bvskrep1gfxr3" path="res://Assets/ship.png" id="1_cec8j"]
+[ext_resource type="Script" path="res://Scripts/ship.gd" id="1_unen4"]
+
+[node name="Ship" type="Area2D"]
+rotation = -1.57142
+script = ExtResource("1_unen4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_cec8j")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(0, 8, 2, 2, 8, -3, 3, -3, 5, -7, 0, -3, -5, -7, -3, -3, -8, -3, -1, 2)
+
+[node name="Boost Timer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[connection signal="timeout" from="Boost Timer" to="." method="_on_boost_timer_timeout"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkwlj2x36bq8s"]
+
+[ext_resource type="Texture2D" uid="uid://daniubj2gvgle" path="res://Assets/Sprites.png" id="1_vfhuu"]
+
+[node name="Pip1" type="PanelContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_direction = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 28)
+texture = ExtResource("1_vfhuu")
+region_enabled = true
+region_rect = Rect2(80, 0, 32, 56)

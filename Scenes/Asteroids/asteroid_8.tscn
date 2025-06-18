@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://8aycxjd8e4fn"]
+
+[ext_resource type="PackedScene" uid="uid://c3ycx4ayglgrb" path="res://Scenes/Asteroids/asteroid_base.tscn" id="1_prjgo"]
+[ext_resource type="Script" path="res://Scripts/asteroid_base.gd" id="2_p01o8"]
+[ext_resource type="Texture2D" uid="uid://chy8j258map6e" path="res://Assets/Asteroid.png" id="2_vfppe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sms2v"]
+atlas = ExtResource("2_vfppe")
+region = Rect2(190, 190, 36, 24)
+
+[node name="asteroid" instance=ExtResource("1_prjgo")]
+script = ExtResource("2_p01o8")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_sms2v")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
+polygon = PackedVector2Array(-6, -11, -10, -9, -14, -2, -13, 4, -3, 7, 3, 10, 9, 5, 15, 3, 16, -4, 11, -9, 6, -11, 1, -9)

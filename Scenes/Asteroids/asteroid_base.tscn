@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c3ycx4ayglgrb"]
+
+[node name="asteroid" type="Area2D" groups=["asteroid"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2

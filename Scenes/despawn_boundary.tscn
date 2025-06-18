@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://lfr7ritfvdvc"]
+
+[ext_resource type="Script" path="res://Scripts/despawn_boundary.gd" id="1_py216"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pc1v0"]
+
+[node name="despawn_boundary" type="Area2D"]
+script = ExtResource("1_py216")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_pc1v0")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqnl7x3ie0pgw"]
+
+[ext_resource type="Texture2D" uid="uid://daniubj2gvgle" path="res://Assets/Sprites.png" id="1_o1bs5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uc107"]
+size = Vector2(36, 36)
+
+[node name="boost_pickup" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("1_o1bs5")
+region_enabled = true
+region_rect = Rect2(4, 8, 56, 56)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = -2
+shape = SubResource("RectangleShape2D_uc107")

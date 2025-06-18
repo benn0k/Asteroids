@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwukgq1btybvn"]
+
+[ext_resource type="Script" path="res://Scripts/boost_ui.gd" id="1_ak741"]
+[ext_resource type="Texture2D" uid="uid://daniubj2gvgle" path="res://Assets/Sprites.png" id="1_uj8yw"]
+
+[node name="BoostUI" type="HBoxContainer"]
+layout_direction = 2
+offset_right = 60.0
+theme_override_constants/separation = 29
+script = ExtResource("1_ak741")
+
+[node name="Pip1" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(10, 0)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Pip1"]
+position = Vector2(26, 28)
+texture = ExtResource("1_uj8yw")
+region_enabled = true
+region_rect = Rect2(80, 0, 32, 56)
+
+[node name="Pip2" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(10, 0)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Pip2"]
+position = Vector2(26, 28)
+texture = ExtResource("1_uj8yw")
+region_enabled = true
+region_rect = Rect2(80, 0, 32, 56)
+
+[node name="Pip3" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(10, 0)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Pip3"]
+position = Vector2(27, 28)
+texture = ExtResource("1_uj8yw")
+region_enabled = true
+region_rect = Rect2(80, 0, 32, 56)

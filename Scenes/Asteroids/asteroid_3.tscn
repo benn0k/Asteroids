@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbjaokfbsnyv"]
+
+[ext_resource type="PackedScene" uid="uid://c3ycx4ayglgrb" path="res://Scenes/Asteroids/asteroid_base.tscn" id="1_d1s7l"]
+[ext_resource type="Script" path="res://Scripts/asteroid_base.gd" id="2_2k5lm"]
+[ext_resource type="Texture2D" uid="uid://chy8j258map6e" path="res://Assets/Asteroid.png" id="2_wyqjc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nl2nl"]
+atlas = ExtResource("2_wyqjc")
+region = Rect2(200, 18, 50, 36)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y2b83"]
+radius = 13.0
+height = 42.9256
+
+[node name="asteroid" instance=ExtResource("1_d1s7l")]
+script = ExtResource("2_2k5lm")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_nl2nl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(-3, -2)
+rotation = -1.69721
+shape = SubResource("CapsuleShape2D_y2b83")
