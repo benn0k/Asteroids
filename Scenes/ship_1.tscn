@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bvskrep1gfxr3" path="res://Assets/ship.png" id="1_cec8j"]
 [ext_resource type="Script" path="res://Scripts/ship.gd" id="1_unen4"]
 
-[node name="Ship" type="Area2D"]
+[node name="Ship" type="Area2D" groups=["ship"]]
 rotation = -1.57142
 script = ExtResource("1_unen4")
 

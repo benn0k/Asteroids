@@ -14,7 +14,6 @@ autostart = true
 autostart = true
 
 [node name="Boost_Pickup_Timer" type="Timer" parent="."]
-wait_time = 5.0
 autostart = true
 
 [connection signal="timeout" from="Boost_Pickup_Timer" to="." method="_on_boost_pickup_timer_timeout"]

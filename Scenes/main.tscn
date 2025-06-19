@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://4tfnwqbyq5km"]
+[gd_scene load_steps=18 format=3 uid="uid://4tfnwqbyq5km"]
 
 [ext_resource type="PackedScene" uid="uid://di1702g5vhlx1" path="res://Scenes/ship_1.tscn" id="1_l44on"]
 [ext_resource type="PackedScene" uid="uid://80dg3ymtak06" path="res://Scenes/background_1.tscn" id="2_jstck"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://Scripts/AnimationPlayer.gd" id="7_jnio5"]
 [ext_resource type="Texture2D" uid="uid://cgstggo3jm8q5" path="res://Assets/GUI.png" id="7_xrir0"]
 [ext_resource type="PackedScene" uid="uid://cwukgq1btybvn" path="res://Scenes/boost_ui.tscn" id="10_4vfej"]
-[ext_resource type="PackedScene" uid="uid://dqnl7x3ie0pgw" path="res://Scenes/boost_pickup.tscn" id="12_rh28s"]
 
 [sub_resource type="GDScript" id="GDScript_nh4re"]
 script/source = "extends Node2D
@@ -63,7 +62,7 @@ _data = {
 [node name="Main" type="Node2D"]
 script = SubResource("GDScript_nh4re")
 metadata/_edit_vertical_guides_ = [400.0]
-metadata/_edit_horizontal_guides_ = [76.0, 400.0]
+metadata/_edit_horizontal_guides_ = [76.0, 400.0, 700.0]
 
 [node name="ship" parent="." instance=ExtResource("1_l44on")]
 position = Vector2(400, 400)
@@ -100,12 +99,12 @@ scale = Vector2(10, 1)
 anchors_preset = -1
 anchor_left = 0.375
 anchor_top = 0.238
-anchor_right = 0.448
+anchor_right = 0.449
 anchor_bottom = 0.417
 offset_left = 8.0
-offset_top = 28.6
-offset_right = 134.6
-offset_bottom = -36.6
+offset_top = 170.6
+offset_right = 133.8
+offset_bottom = 105.4
 scale = Vector2(0.995, 0.995)
 alignment = 1
 
@@ -191,10 +190,10 @@ text = "SCORE: 0"
 
 [node name="BoostUI" parent="UI/Panel" instance=ExtResource("10_4vfej")]
 layout_mode = 0
-offset_left = -154.0
-offset_top = 437.333
-offset_right = -66.0
-offset_bottom = 437.333
+offset_left = -173.0
+offset_top = 437.0
+offset_right = 38.0
+offset_bottom = 437.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -202,11 +201,8 @@ libraries = {
 }
 script = ExtResource("7_jnio5")
 
-[node name="Area2D" parent="." groups=["boost_pickup"] instance=ExtResource("12_rh28s")]
-position = Vector2(154, 514)
-
 [connection signal="area_entered" from="ship" to="UI/Panel" method="_on_ship_area_entered"]
-[connection signal="boost_pickup" from="ship" to="RandomItemSpawner" method="_on_ship_boost_pickup"]
+[connection signal="boost_pickup" from="ship" to="UI/Panel/BoostUI" method="_on_ship_boost_pickup"]
 [connection signal="destroyed" from="ship" to="Boundary/L_despawn_boundary" method="_on_ship_destroyed"]
 [connection signal="destroyed" from="ship" to="Boundary/T_despawn_boundary2" method="_on_ship_destroyed"]
 [connection signal="destroyed" from="ship" to="Boundary/R_despawn_boundary3" method="_on_ship_destroyed"]

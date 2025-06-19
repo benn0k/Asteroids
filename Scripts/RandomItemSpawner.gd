@@ -100,8 +100,11 @@ func on_inc_timer_timeout() -> void:
 #Runs every 5 seconds
 func on_boost_pickup_timer_timeout() -> void:
 	var boost_pickup = boost_pip.instantiate()
-	boost_pickup.position = Vector2(randf_range(100,780),randf_range(100,780))
+	boost_pickup.position = Vector2(randf_range(100,780),randf_range(100,700))
 	add_child(boost_pickup)
+
+
+
 
 
 

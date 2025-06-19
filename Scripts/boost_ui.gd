@@ -1,6 +1,6 @@
 extends HBoxContainer
 # Preload boost ui pips -> node
-var ui_pip := preload("res://Scenes/boost_UI_pip.tscn").instantiate()
+var ui_pip := preload("res://Scenes/boost_UI_pip.tscn")
 
 func _on_ship_is_boosting() -> void:
 	#Get children of boost ui (ui pips) and set first to first_child, then remove it 
@@ -10,4 +10,7 @@ func _on_ship_is_boosting() -> void:
 		remove_child(first_child)
 		first_child.queue_free()
 
-	#add_child(ui_pip)
+func _on_ship_boost_pickup() -> void:
+	ui_pip.instantiate()
+	add_child(ui_pip)
+

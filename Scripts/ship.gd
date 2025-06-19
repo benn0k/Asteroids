@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var boost_timer = get_node('Boost Timer')
 
-@export var boost_segment:= 3
+@export var boost_segment:= 1
 
 var max_speed := 300
 var velocity := Vector2(0, 0)
@@ -65,11 +65,15 @@ func _on_area_entered(area_that_entered) -> void:
 	if area_that_entered.is_in_group("asteroid"):
 		destroyed.emit()
 		queue_free()
+		
 	# Check if boost pickup - fire signal to inc boost counter and refil UI
 	if area_that_entered.is_in_group("boost_pickup"):
 		boost_pickup.emit()
-		boost_segment += 1
-		#TODO Destroy
+		if boost_segment >=3:
+			pass
+		else:
+			boost_segment += 1
+
  
 
 #Runs when ship's boost timer timesout
